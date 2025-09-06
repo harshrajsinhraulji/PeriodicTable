@@ -1,0 +1,618 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #fff;
+    transition: background 0.3s ease, color 0.3s ease;
+    cursor: url('Assets/images/cursors/1.png'), auto;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* 1. Dark Mode Button Styling */
+#dark-mode-toggle {
+    margin: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+    background: #555;
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Dark Mode Toggle Button Hover Tooltip */
+#dark-mode-toggle::after {
+    content: attr(data-mode);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+/* Show tooltip on hover */
+#dark-mode-toggle:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* 2. Search Bar Styling */
+#search {
+    width: 250px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: border 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+#search:focus {
+    border: 2px solid #007BFF;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Add hover effect for the search bar */
+#search:hover {
+    border: 2px solid #007BFF;
+    background-color: #f0f8ff; /* Light blue background on hover */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* 3. Heading Styling for the Periodic Table Title */
+.table-heading {
+    font-family: 'Sigmar', sans-serif; /* Apply the new font */
+    font-size: 4rem; /* Increase the font size */
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    /* Apply a gradient effect clipped to the text */
+    background: linear-gradient(135deg, #73094a, #c591bb, #73094a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    display: inline-block;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transition: transform 0.3s ease;
+}
+
+/* Enhanced hover effect on each letter */
+.table-heading span {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.table-heading span:hover {
+    transform: scale(1.5) rotate(5deg); /* Enlarge and slightly rotate the letter under the cursor */
+    color: #3f0834; /* Change the color on hover */
+    text-shadow: 2px 2px 8px rgba(121, 11, 40, 0.5); /* Add a subtle shadow */
+    filter: brightness(1.2); /* Increase brightness */
+}
+
+/* 4. Periodic Table Grid */
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 5px;
+    max-width: 95%;
+    margin: auto;
+    padding: 10px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* 5. Element Box Styling */
+.element {
+    position: relative;
+    background: #eee;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, scale 0.2s ease, top 0.2s ease;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 6. Element Hover Effects */
+.element:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    border: 2px solid #007BFF; /* Add border highlight on hover */
+    top: -5px; /* Subtle upward shift on hover */
+}
+
+/* 7. Hover Tooltip */
+.element::after {
+    content: attr(data-name) " (" attr(data-weight) "), Phase: " attr(data-phase);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.2s ease-in-out;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.element:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* 8. Empty Space (for layout adjustments) */
+.empty-space {
+    background: transparent;
+}
+
+/* 9. Element Category Colors */
+.nonmetal { background: #A7F2A7; }
+.metalloid { background: #FFD580; }
+.alkali-metal { background: #FF4D4D; }
+.alkaline-earth { background: #FF8C4D; }
+.halogen { background: #66CCFF; }
+.noble-gas { background: #E4B3F2; }
+.transition-metal { background: #FFD966; }
+.lanthanide { background: #CBA3D8; }
+.actinide { background: #B98AFF; }
+
+/* 10. Lanthanides & Actinides Placeholder Styling */
+.element.lanthanide-placeholder {
+    position: relative;
+    background: #CBA3D8;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, scale 0.2s ease, top 0.2s ease;
+    border-radius: 5px;
+}
+
+.element.actinide-placeholder {
+    position: relative;
+    background: #B98AFF;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, scale 0.2s ease, top 0.2s ease;
+    border-radius: 5px;
+}
+
+/* Hover Effect for Lanthanides Placeholder */
+.element.lanthanide-placeholder:hover::after {
+    content: "Lanthanides"; /* The content to display */
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Hover Effect for Actinides Placeholder */
+.element.actinide-placeholder:hover::after {
+    content: "Actinides";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* 11. Lanthanides & Actinides Series Styling (Optional) */
+.extra-elements {
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* 12. Dark Mode Styling */
+.dark-mode .element {
+    background: #333;
+    color: white;
+}
+
+.dark-mode .element:hover {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+.dark-mode .element::after {
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+}
+
+/* 13. Mobile-Friendly Design */
+@media (max-width: 768px) {
+    .periodic-table {
+        grid-template-columns: repeat(9, 1fr); /* Reduce the number of columns for mobile */
+    }
+
+    .element {
+        font-size: 12px; /* Smaller font size for better fitting */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .table-heading {
+        font-size: 1.5rem; /* Adjust heading size for mobile */
+    }
+}
+
+/* 14. Focus States for Accessibility */
+.element:focus {
+    outline: 3px solid #007BFF;
+    outline-offset: 4px;
+}
+
+/* 15. Toggle Sound Button Styling */
+#change-sound {
+    position: relative;
+    margin: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: #3097e6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Fancy hover effect */
+#change-sound:hover {
+    background: #1d74c2;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(48, 151, 230, 0.8);
+    animation: bounce 0.3s ease-in-out;
+}
+
+/* Fancy hover tooltip */
+#change-sound::after {
+    content: attr(data-sound-name);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+/* Show tooltip on hover */
+#change-sound:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Dark mode styling for the Toggle Sound button */
+.dark-mode #change-sound {
+    background: #555;
+    color: white;
+}
+
+.dark-mode #change-sound:hover {
+    background: #777;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1.1); }
+}
+
+.hidden {
+    display: none;
+}
+
+/* New classes for search effect */
+.dimmed {
+    filter: grayscale(90%);
+    opacity: 0.5;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.highlight {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.element-detail {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: none;
+    width: 1100px;
+    height: 240px;
+    position: relative;
+    left: 5%;
+    outline: none;
+}
+
+.element-box {
+    position: relative;
+    width: 55%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    outline: rgba(0, 0, 0, 0.8);
+}
+
+.element-symbol {
+    font-size: 6em;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    outline: none;
+}
+
+.element-name {
+    font-size: 2.5em;
+    position: absolute;
+    top: 100px;
+    left: 10px;
+}
+
+.element-weight {
+    font-size: 2em;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.element-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.element-info {
+    margin-left: 20px;
+    text-align: left;
+    width: 40%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.element-info-name {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.element-details p {
+    font-size: 1.5em;
+    margin: 5px 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.hidden {
+    display: none;
+}
+
+.dimmed {
+    opacity: 0.5;
+}
+
+.highlight {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: -100px; /* Position the button beside the detailed box */
+    margin: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: #3097e6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.close-button:hover {
+    background: #1d74c2;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(48, 151, 230, 0.8);
+    animation: bounce 0.3s ease-in-out;
+}
+
+/* Close Button Hover Tooltip */
+.close-button::after {
+    content: "Close Details";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+/* Show tooltip on hover */
+.close-button:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Apply custom cursor for clickable objects */
+button, .element, #search {
+    cursor: url('D:/Codes/images/cursors/click.png'), pointer;
+}
+
+/* Override for buttons with custom IDs (e.g., dark mode toggle, toggle sound, close-button) */
+#dark-mode-toggle,
+#change-sound,
+.close-button {
+    cursor: url('D:/Codes/images/cursors/click.png'), pointer !important;
+}
+
+
+h2 {
+  margin: 0; padding: 0;
+  position:absolute;
+  top: 50%; left: 50%;
+  transform:translate(-50%,-50%);
+  font-size: 6em; color:transparent;
+  text-transform:uppercase;
+}
+h2 span:nth-child(1){
+  position:absolute;
+  top:0; left:0; color: #000;
+  transition:0.5s;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  overflow:hidden;
+}
+h2:hover span:nth-child(1){
+  transform:translateY(-18px); 
+}
+h2 span:nth-child(2){
+  position:absolute;
+  top:0; left:0; color: #000;
+  transition:0.5s;
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+  overflow:hidden;
+}
+h2:hover span:nth-child(2){
+  transform:translateY(18px); 
+}
+h2 span:nth-child(3){
+  position:absolute;
+  top:50%; left: 0;
+  transform:translateY(-50%) scaleY(0);
+  width: 91%; color: #000;
+  background:#ff0;
+  font-size: 0.25em; font-weight: 500;
+  letter-spacing:0.7em;
+  text-align:center;
+  padding-left: 20px; margin-left: 5px;
+  transition:0.5s;
+}
+h2:hover span:nth-child(3){
+  transform:translateY(-50%) scaleY(1);
+}
+
+/* Apply custom cursor for clickable objects */
+button, .element, #search {
+    cursor: url('D:/Codes/images/cursors/click.png'), pointer;
+}
+
+/* Apply custom cursor for lanthanide and actinide placeholders */
+.element.lanthanide-placeholder,
+.element.actinide-placeholder {
+    cursor: url('D:/Codes/images/cursors/click.png'), pointer;
+}
+
+/* Override for buttons with custom IDs (e.g., dark mode toggle, toggle sound, close-button) */
+#dark-mode-toggle,
+#change-sound,
+.close-button {
+    cursor: url('D:/Codes/images/cursors/click.png'), pointer !important;
+}
+
+/* Dark Mode Styling for h2 Periodic Table Title by Harshrajsinh Raulji */
+.dark-mode h2 {
+    z-index: 10000; /* Ensure the title stays on top */
+}
+
+.dark-mode h2 span:nth-child(1),
+.dark-mode h2 span:nth-child(2) {
+    color: #fff; /* Force white via gradient clip */
+    background: linear-gradient(135deg, #444, #777);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 8px rgba(255, 240, 240, 0.9);
+}
+
+.dark-mode h2 span:nth-child(3) {
+    color: #fff;
+    background: transparent;
+    text-shadow: none;
+}
+

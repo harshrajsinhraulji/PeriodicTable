@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Periodic Table</title>
+    <style>
+        body {
+            cursor: url("Assets/images/cursors/1.png"), auto;
+        }
+        button, .element, #search {
+            cursor: url("Assets/images/cursors/click.png"), pointer;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Sigmar&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="trail.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <canvas id="myCanvas"></canvas>
+
+     <!-- Audio (Preload the files for smooth playback) -->
+     <audio id="sound-1" src="Assets/Sounds/click.mp3" preload="auto"></audio>
+     <audio id="sound-2" src="Assets/Sounds/sheriff.mp3" preload="auto"></audio>
+     <audio id="sound-3" src="Assets/Sounds/blob.wav" preload="auto"></audio>
+     <audio id="sound-4" src="Assets/Sounds/wind.mp3" preload="auto"></audio>
+     <audio id="sound-5" src="Assets/Sounds/pop.mp3" preload="auto"></audio>
+
+    <!-- Wrap h2 in a header container -->
+    <header>
+        <h2>
+        PERIODIC TABLE
+        <span>PERIODIC TABLE</span>
+        <span>PERIODIC TABLE</span>
+        <span>by Harshrajsinh Raulji</span>
+        </h2>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
+
+    <!--Sound Toggle-->
+    <button id="change-sound">Toggle Sound</button>
+
+    <!-- Search Bar -->
+    <input type="text" id="search" placeholder="Search element...">
+
+    <!-- Periodic Table -->
+    <div class ="periodic-table-container">
+        <div class="periodic-table">
+            <!-- Hydrogen Row -->
+             <div class="element nonmetal" style="grid-column: 1;" data-name="Hydrogen" data-symbol="H" data-number="1" data-weight="1.008" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-259.16°C" data-boilingpoint="-252.87°C" data-electronicConfiguration="1s¹">1<br>H</div>
+             <div class="element noble-gas" style="grid-column: 18;" data-name="Helium" data-symbol="He" data-number="2" data-weight="4.0026" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-272.20°C" data-boilingpoint="-268.93°C" data-electronicConfiguration="1s²">2<br>He</div>
+     
+             <!-- Second Row -->
+             <div class="element alkali-metal" style="grid-column: 1;" data-name="Lithium" data-symbol="Li" data-number="3" data-weight="6.94" data-halflife="N/A" data-phase="Solid" data-meltingpoint="180.54°C" data-boilingpoint="1590°C" data-electronicConfiguration="1s² 2s¹">3<br>Li</div>
+             <div class="element alkaline-earth" data-name="Beryllium" data-symbol="Be" data-number="4" data-weight="9.0122" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1287°C" data-boilingpoint="2970°C" data-electronicConfiguration="1s² 2s²">4<br>Be</div>
+             <div class="empty-space" style="grid-column: 3 / span 10;"></div>
+             <div class="element metalloid" data-name="Boron" data-symbol="B" data-number="5" data-weight="10.81" data-halflife="N/A" data-phase="Solid" data-meltingpoint="2076°C" data-boilingpoint="4000°C" data-electronicConfiguration="1s² 2s² 2p¹">5<br>B</div>
+             <div class="element nonmetal" data-name="Carbon" data-symbol="C" data-number="6" data-weight="12.011" data-halflife="N/A" data-phase="Solid" data-meltingpoint="Sublimates" data-boilingpoint="3915°C" data-electronicConfiguration="1s² 2s² 2p²">6<br>C</div>
+             <div class="element nonmetal" data-name="Nitrogen" data-symbol="N" data-number="7" data-weight="14.007" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-210.00°C" data-boilingpoint="-195.79°C" data-electronicConfiguration="1s² 2s² 2p³">7<br>N</div>
+             <div class="element nonmetal" data-name="Oxygen" data-symbol="O" data-number="8" data-weight="15.999" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-218.79°C" data-boilingpoint="-182.96°C" data-electronicConfiguration="1s² 2s² 2p⁴">8<br>O</div>
+             <div class="element halogen" data-name="Fluorine" data-symbol="F" data-number="9" data-weight="18.998" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-219.62°C" data-boilingpoint="-188.12°C" data-electronicConfiguration="1s² 2s² 2p⁵">9<br>F</div>
+             <div class="element noble-gas" data-name="Neon" data-symbol="Ne" data-number="10" data-weight="20.180" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-248.59°C" data-boilingpoint="-246.05°C" data-electronicConfiguration="1s² 2s² 2p⁶">10<br>Ne</div>
+     
+             <!-- Third Row -->
+             <div class="element alkali-metal" style="grid-column: 1;" data-name="Sodium" data-symbol="Na" data-number="11" data-weight="22.990" data-halflife="N/A" data-phase="Solid" data-meltingpoint="97.72°C" data-boilingpoint="883°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s¹">11<br>Na</div>
+             <div class="element alkaline-earth" data-name="Magnesium" data-symbol="Mg" data-number="12" data-weight="24.305" data-halflife="N/A" data-phase="Solid" data-meltingpoint="650°C" data-boilingpoint="1090°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s²">12<br>Mg</div>
+             <div class="empty-space" style="grid-column: 3 / span 10;"></div>
+             <div class="element post-transition" data-name="Aluminum" data-symbol="Al" data-number="13" data-weight="26.982" data-halflife="N/A" data-phase="Solid" data-meltingpoint="660.32°C" data-boilingpoint="2470°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p¹">13<br>Al</div>
+             <div class="element metalloid" data-name="Silicon" data-symbol="Si" data-number="14" data-weight="28.085" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1414°C" data-boilingpoint="2900°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p²">14<br>Si</div>
+             <div class="element nonmetal" data-name="Phosphorus" data-symbol="P" data-number="15" data-weight="30.974" data-halflife="N/A" data-phase="Solid" data-meltingpoint="44.15°C" data-boilingpoint="280.5°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p³">15<br>P</div>
+             <div class="element nonmetal" data-name="Sulfur" data-symbol="S" data-number="16" data-weight="32.06" data-halflife="N/A" data-phase="Solid" data-meltingpoint="115.21°C" data-boilingpoint="444.6°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁴">16<br>S</div>
+             <div class="element halogen" data-name="Chlorine" data-symbol="Cl" data-number="17" data-weight="35.45" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-101.5°C" data-boilingpoint="-34.04°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁵">17<br>Cl</div>
+             <div class="element noble-gas" data-name="Argon" data-symbol="Ar" data-number="18" data-weight="39.948" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-189.34°C" data-boilingpoint="-185.85°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶">18<br>Ar</div>
+     
+             <!-- Fourth Row -->
+             <div class="element alkali-metal" style="grid-column: 1;" data-name="Potassium" data-symbol="K" data-number="19" data-weight="39.098" data-halflife="N/A" data-phase="Solid" data-meltingpoint="63.38°C" data-boilingpoint="759°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹">19<br>K</div>
+             <div class="element alkaline-earth" data-name="Calcium" data-symbol="Ca" data-number="20" data-weight="40.078" data-halflife="N/A" data-phase="Solid" data-meltingpoint="842°C" data-boilingpoint="1484°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s²">20<br>Ca</div>
+             <div class="element transition-metal" data-name="Scandium" data-symbol="Sc" data-number="21" data-weight="44.956" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1541°C" data-boilingpoint="2836°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s²">21<br>Sc</div>
+             <div class="element transition-metal" data-name="Titanium" data-symbol="Ti" data-number="22" data-weight="47.867" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1668°C" data-boilingpoint="3287°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d² 4s²">22<br>Ti</div>
+             <div class="element transition-metal" data-name="Vanadium" data-symbol="V" data-number="23" data-weight="50.942" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1910°C" data-boilingpoint="3380°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d³ 4s²">23<br>V</div>
+             <div class="element transition-metal" data-name="Chromium" data-symbol="Cr" data-number="24" data-weight="52.00" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1907°C" data-boilingpoint="2671°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁵ 4s¹">24<br>Cr</div>
+             <div class="element transition-metal" data-name="Manganese" data-symbol="Mn" data-number="25" data-weight="54.938" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1244°C" data-boilingpoint="2095°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁵ 4s²">25<br>Mn</div>
+             <div class="element transition-metal" data-name="Iron" data-symbol="Fe" data-number="26" data-weight="55.845" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1538°C" data-boilingpoint="2862°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁶ 4s²">26<br>Fe</div>
+             <div class="element transition-metal" data-name="Cobalt" data-symbol="Co" data-number="27" data-weight="58.933" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1495°C" data-boilingpoint="2927°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁷ 4s²">27<br>Co</div>
+             <div class="element transition-metal" data-name="Nickel" data-symbol="Ni" data-number="28" data-weight="58.693" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1455°C" data-boilingpoint="2913°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁸ 4s²">28<br>Ni</div>
+             <div class="element transition-metal" data-name="Copper" data-symbol="Cu" data-number="29" data-weight="63.546" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1084.62°C" data-boilingpoint="2562°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s¹">29<br>Cu</div>
+             <div class="element transition-metal" data-name="Zinc" data-symbol="Zn" data-number="30" data-weight="65.38" data-halflife="N/A" data-phase="Solid" data-meltingpoint="419.58°C" data-boilingpoint="907°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s²">30<br>Zn</div>
+             <div class="element post-transition" data-name="Gallium" data-symbol="Ga" data-number="31" data-weight="69.723" data-halflife="N/A" data-phase="Solid" data-meltingpoint="29.76°C" data-boilingpoint="2204°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p¹">31<br>Ga</div>
+             <div class="element metalloid" data-name="Germanium" data-symbol="Ge" data-number="32" data-weight="72.630" data-halflife="N/A" data-phase="Solid" data-meltingpoint="938.25°C" data-boilingpoint="2833°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p²">32<br>Ge</div>
+             <div class="element metalloid" data-name="Arsenic" data-symbol="As" data-number="33" data-weight="74.922" data-halflife="N/A" data-phase="Solid" data-meltingpoint="817°C" data-boilingpoint="613°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p³">33<br>As</div>
+             <div class="element nonmetal" data-name="Selenium" data-symbol="Se" data-number="34" data-weight="78.971" data-halflife="N/A" data-phase="Solid" data-meltingpoint="221°C" data-boilingpoint="684.9°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁴">34<br>Se</div>
+             <div class="element halogen" data-name="Bromine" data-symbol="Br" data-number="35" data-weight="79.904" data-halflife="N/A" data-phase="Liquid" data-meltingpoint="-7.2°C" data-boilingpoint="58.8°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁵">35<br>Br</div>
+             <div class="element noble-gas" data-name="Krypton" data-symbol="Kr" data-number="36" data-weight="83.798" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-157.36°C" data-boilingpoint="-153.22°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶">36<br>Kr</div>
+     
+     
+             <!-- Fifth Row -->
+             <div class="element alkali-metal" style="grid-column: 1;" data-name="Rubidium" data-symbol="Rb" data-number="37" data-weight="85.468" data-halflife="N/A" data-phase="Solid" data-meltingpoint="39.31°C" data-boilingpoint="688°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s¹">37<br>Rb</div>
+             <div class="element alkaline-earth" data-name="Strontium" data-symbol="Sr" data-number="38" data-weight="87.62" data-halflife="N/A" data-phase="Solid" data-meltingpoint="777°C" data-boilingpoint="1382°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s²">38<br>Sr</div>
+             <div class="element transition-metal" data-name="Yttrium" data-symbol="Y" data-number="39" data-weight="88.905" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1526°C" data-boilingpoint="3338°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d¹">39<br>Y</div>
+             <div class="element transition-metal" data-name="Zirconium" data-symbol="Zr" data-number="40" data-weight="91.224" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1855°C" data-boilingpoint="4377°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d²">40<br>Zr</div>
+             <div class="element transition-metal" data-name="Niobium" data-symbol="Nb" data-number="41" data-weight="92.906" data-halflife="N/A" data-phase="Solid" data-meltingpoint="2477°C" data-boilingpoint="4744°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d³">41<br>Nb</div>
+             <div class="element transition-metal" data-name="Molybdenum" data-symbol="Mo" data-number="42" data-weight="95.95" data-halflife="N/A" data-phase="Solid" data-meltingpoint="2623°C" data-boilingpoint="4639°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d⁵">42<br>Mo</div>
+             <div class="element transition-metal" data-name="Technetium" data-symbol="Tc" data-number="43" data-weight="98" data-halflife="4.2 × 10⁵ years" data-phase="Solid" data-meltingpoint="2157°C" data-boilingpoint="4265°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d⁵">43<br>Tc</div>
+             <div class="element transition-metal" data-name="Ruthenium" data-symbol="Ru" data-number="44" data-weight="101.07" data-halflife="N/A" data-phase="Solid" data-meltingpoint="2334°C" data-boilingpoint="4150°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d⁷">44<br>Ru</div>
+             <div class="element transition-metal" data-name="Rhodium" data-symbol="Rh" data-number="45" data-weight="102.91" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1964°C" data-boilingpoint="3695°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d⁸">45<br>Rh</div>
+             <div class="element transition-metal" data-name="Palladium" data-symbol="Pd" data-number="46" data-weight="106.42" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1554.9°C" data-boilingpoint="2963°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s² 4p⁶ 4d¹⁰">46<br>Pd</div>
+             <div class="element transition-metal" data-name="Silver" data-symbol="Ag" data-number="47" data-weight="107.868" data-halflife="N/A" data-phase="Solid" data-meltingpoint="961.78°C" data-boilingpoint="2162°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s¹">47<br>Ag</div>
+             <div class="element transition-metal" data-name="Cadmium" data-symbol="Cd" data-number="48" data-weight="112.41" data-halflife="N/A" data-phase="Solid" data-meltingpoint="321.07°C" data-boilingpoint="767°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p²">48<br>Cd</div>
+             <div class="element post-transition" data-name="Indium" data-symbol="In" data-number="49" data-weight="114.82" data-halflife="N/A" data-phase="Solid" data-meltingpoint="156.60°C" data-boilingpoint="2072°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p¹">49<br>In</div>
+             <div class="element post-transition" data-name="Tin" data-symbol="Sn" data-number="50" data-weight="118.71" data-halflife="N/A" data-phase="Solid" data-meltingpoint="231.93°C" data-boilingpoint="2602°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p²">50<br>Sn</div>
+             <div class="element metalloid" data-name="Antimony" data-symbol="Sb" data-number="51" data-weight="121.76" data-halflife="N/A" data-phase="Solid" data-meltingpoint="630.63°C" data-boilingpoint="1587°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p³">51<br>Sb</div>
+             <div class="element metalloid" data-name="Tellurium" data-symbol="Te" data-number="52" data-weight="127.60" data-halflife="N/A" data-phase="Solid" data-meltingpoint="449.51°C" data-boilingpoint="988°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁴">52<br>Te</div>
+             <div class="element halogen" data-name="Iodine" data-symbol="I" data-number="53" data-weight="126.90" data-halflife="N/A" data-phase="Solid" data-meltingpoint="113.7°C" data-boilingpoint="184.3°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁵">53<br>I</div>
+             <div class="element noble-gas" data-name="Xenon" data-symbol="Xe" data-number="54" data-weight="131.29" data-halflife="N/A" data-phase="Gas" data-meltingpoint="-111.79°C" data-boilingpoint="-108.12°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶">54<br>Xe</div>
+     
+     
+             <!-- Sixth Row -->
+             <div class="element alkali-metal" style="grid-column: 1;" data-name="Cesium" data-symbol="Cs" data-number="55" data-weight="132.91" data-halflife="N/A" data-phase="Solid" data-meltingpoint="28.44°C" data-boilingpoint="671°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s¹">55<br>Cs</div>
+             <div class="element alkaline-earth" data-name="Barium" data-symbol="Ba" data-number="56" data-weight="137.33" data-halflife="N/A" data-phase="Solid" data-meltingpoint="725°C" data-boilingpoint="1640°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s²">56<br>Ba</div>
+             <div class="element lanthanide-placeholder" data-series="Lanthanides">57-71</div>
+             <div class="element transition-metal" data-name="Hafnium" data-symbol="Hf" data-number="72" data-weight="178.49" data-halflife="N/A" data-phase="Solid" data-meltingpoint="2233°C" data-boilingpoint="4603°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²">72<br>Hf</div>
+             <div class="element transition-metal" data-name="Tantalum" data-symbol="Ta" data-number="73" data-weight="180.95" data-halflife="N/A" data-phase="Solid" data-meltingpoint="3017°C" data-boilingpoint="5458°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d³">73<br>Ta</div>
+             <div class="element transition-metal" data-name="Tungsten" data-symbol="W" data-number="74" data-weight="183.84" data-halflife="N/A" data-phase="Solid" data-meltingpoint="3422°C" data-boilingpoint="5555°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁴">74<br>W</div>
+             <div class="element transition-metal" data-name="Rhenium" data-symbol="Re" data-number="75" data-weight="186.21" data-halflife="N/A" data-phase="Solid" data-meltingpoint="3186°C" data-boilingpoint="5596°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁵">75<br>Re</div>
+             <div class="element transition-metal" data-name="Osmium" data-symbol="Os" data-number="76" data-weight="190.23" data-halflife="N/A" data-phase="Solid" data-meltingpoint="3033°C" data-boilingpoint="5027°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁶">76<br>Os</div>
+             <div class="element transition-metal" data-name="Iridium" data-symbol="Ir" data-number="77" data-weight="192.22" data-halflife="N/A" data-phase="Solid" data-meltingpoint="2446°C" data-boilingpoint="4130°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁷">77<br>Ir</div>
+             <div class="element transition-metal" data-name="Platinum" data-symbol="Pt" data-number="78" data-weight="195.08" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1768.3°C" data-boilingpoint="3825°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s¹">78<br>Pt</div>
+             <div class="element transition-metal" data-name="Gold" data-symbol="Au" data-number="79" data-weight="196.97" data-halflife="N/A" data-phase="Solid" data-meltingpoint="1064°C" data-boilingpoint="2970°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s¹">79<br>Au</div>
+             <div class="element transition-metal" data-name="Mercury" data-symbol="Hg" data-number="80" data-weight="200.59" data-halflife="N/A" data-phase="Liquid" data-meltingpoint="-38.83°C" data-boilingpoint="356.73°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰">80<br>Hg</div>
+             <div class="element post-transition" data-name="Thallium" data-symbol="Tl" data-number="81" data-weight="204.38" data-halflife="N/A" data-phase="Solid" data-meltingpoint="304°C" data-boilingpoint="1473°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p¹">81<br>Tl</div>
+             <div class="element post-transition" data-name="Lead" data-symbol="Pb" data-number="82" data-weight="207.2" data-halflife="N/A" data-phase="Solid" data-meltingpoint="327.46°C" data-boilingpoint="1744°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p²">82<br>Pb</div>
+             <div class="element post-transition" data-name="Bismuth" data-symbol="Bi" data-number="83" data-weight="208.98" data-halflife="N/A" data-phase="Solid" data-meltingpoint="271.3°C" data-boilingpoint="1564°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p³">83<br>Bi</div>
+             <div class="element metalloid" data-name="Polonium" data-symbol="Po" data-number="84" data-weight="209" data-halflife="138.4 days" data-phase="Solid" data-meltingpoint="254°C" data-boilingpoint="962°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p⁴">84<br>Po</div>
+             <div class="element halogen" data-name="Astatine" data-symbol="At" data-number="85" data-weight="210" data-halflife="8.1 hours" data-phase="Solid" data-meltingpoint="302°C" data-boilingpoint="337°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p⁵">85<br>At</div>
+             <div class="element noble-gas" data-name="Radon" data-symbol="Rn" data-number="86" data-weight="222" data-halflife="3.8 days" data-phase="Gas" data-meltingpoint="-71°C" data-boilingpoint="-62°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s² 4d¹⁰ 5p⁶">86<br>Rn</div>
+     
+     
+             <!-- Seventh Row -->
+             <div class="element alkali-metal" style="grid-column: 1;" data-name="Francium" data-symbol="Fr" data-number="87" data-weight="223" data-halflife="22 minutes" data-phase="Solid" data-meltingpoint="27°C" data-boilingpoint="650°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s² 4d¹⁰ 5s¹">87<br>Fr</div>
+             <div class="element alkaline-earth" data-name="Radium" data-symbol="Ra" data-number="88" data-weight="226" data-halflife="1600 years" data-phase="Solid" data-meltingpoint="700°C" data-boilingpoint="1413°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s² 4d¹⁰ 5s²">88<br>Ra</div>
+             <div class="element actinide-placeholder" data-series="Actinides">89-103</div>
+             <div class="element transition-metal" data-name="Rutherfordium" data-symbol="Rf" data-number="104" data-weight="267" data-halflife="13.3 hours" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹">104<br>Rf</div>
+             <div class="element transition-metal" data-name="Dubnium" data-symbol="Db" data-number="105" data-weight="268" data-halflife="34 hours" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²">105<br>Db</div>
+             <div class="element transition-metal" data-name="Seaborgium" data-symbol="Sg" data-number="106" data-weight="269" data-halflife="22 minutes" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d³">106<br>Sg</div>
+             <div class="element transition-metal" data-name="Bohrium" data-symbol="Bh" data-number="107" data-weight="270" data-halflife="61 minutes" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁴">107<br>Bh</div>
+             <div class="element transition-metal" data-name="Hassium" data-symbol="Hs" data-number="108" data-weight="277" data-halflife="10 seconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁵">108<br>Hs</div>
+             <div class="element unknown" data-name="Meitnerium" data-symbol="Mt" data-number="109" data-weight="278" data-halflife="7.6 seconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁶">109<br>Mt</div>
+             <div class="element unknown" data-name="Darmstadtium" data-symbol="Ds" data-number="110" data-weight="281" data-halflife="20 seconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁷">110<br>Ds</div>
+             <div class="element unknown" data-name="Roentgenium" data-symbol="Rg" data-number="111" data-weight="280" data-halflife="2.7 minutes" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁸">111<br>Rg</div>
+             <div class="element unknown" data-name="Copernicium" data-symbol="Cn" data-number="112" data-weight="285" data-halflife="29 seconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁹">112<br>Cn</div>
+             <div class="element unknown" data-name="Nihonium" data-symbol="Nh" data-number="113" data-weight="284" data-halflife="10 minutes" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p¹">113<br>Nh</div>
+             <div class="element unknown" data-name="Flerovium" data-symbol="Fl" data-number="114" data-weight="289" data-halflife="30 seconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p²">114<br>Fl</div>
+             <div class="element unknown" data-name="Moscovium" data-symbol="Mc" data-number="115" data-weight="288" data-halflife="0.4 seconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p³">115<br>Mc</div>
+             <div class="element unknown" data-name="Livermorium" data-symbol="Lv" data-number="116" data-weight="293" data-halflife="0.06 seconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p⁴">116<br>Lv</div>
+             <div class="element unknown" data-name="Tennessine" data-symbol="Ts" data-number="117" data-weight="294" data-halflife="20 milliseconds" data-phase="Solid" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰ 5p⁵">117<br>Ts</div>
+             <div class="element unknown" data-name="Oganesson" data-symbol="Og" data-number="118" data-weight="294" data-halflife="0.89 milliseconds" data-phase="Gas" data-meltingpoint="N/A" data-boilingpoint="N/A" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 4p⁶ 5s² 4d¹⁰ 5p⁶">118<br>Og</div>
+     
+         </div>
+    </div>
+
+    <!-- Lanthanides & Actinides -->
+    <div class="extra-elements">
+        <h3>Lanthanides</h3>
+        <div class="lanthanides-container">
+            <div class="row">
+                <!-- Lanthanides Row -->
+                <div class="element lanthanide" data-name="Lanthanum" data-symbol="La" data-number="57" data-weight="138.905" data-halflife="Stable" data-phase="Solid" data-meltingpoint="920°C" data-boilingpoint="3464°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹">57<br>La</div>
+                <div class="element lanthanide" data-name="Cerium" data-symbol="Ce" data-number="58" data-weight="140.116" data-halflife="Stable" data-phase="Solid" data-meltingpoint="798°C" data-boilingpoint="3426°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²">58<br>Ce</div>
+                <div class="element lanthanide" data-name="Praseodymium" data-symbol="Pr" data-number="59" data-weight="140.907" data-halflife="Stable" data-phase="Solid" data-meltingpoint="931°C" data-boilingpoint="3273°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d³">59<br>Pr</div>
+                <div class="element lanthanide" data-name="Neodymium" data-symbol="Nd" data-number="60" data-weight="144.242" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1021°C" data-boilingpoint="3064°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁴">60<br>Nd</div>
+                <div class="element lanthanide" data-name="Promethium" data-symbol="Pm" data-number="61" data-weight="145" data-halflife="17.7 years" data-phase="Solid" data-meltingpoint="1100°C" data-boilingpoint="3000°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁵">61<br>Pm</div>
+                <div class="element lanthanide" data-name="Samarium" data-symbol="Sm" data-number="62" data-weight="150.36" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1074°C" data-boilingpoint="1800°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁶">62<br>Sm</div>
+                <div class="element lanthanide" data-name="Europium" data-symbol="Eu" data-number="63" data-weight="151.98" data-halflife="Stable" data-phase="Solid" data-meltingpoint="826°C" data-boilingpoint="1529°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁷">63<br>Eu</div>
+                <div class="element lanthanide" data-name="Gadolinium" data-symbol="Gd" data-number="64" data-weight="157.25" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1313°C" data-boilingpoint="3273°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁸">64<br>Gd</div>
+                <div class="element lanthanide" data-name="Terbium" data-symbol="Tb" data-number="65" data-weight="158.925" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1356°C" data-boilingpoint="3230°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d⁹">65<br>Tb</div>
+                <div class="element lanthanide" data-name="Dysprosium" data-symbol="Dy" data-number="66" data-weight="162.5" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1412°C" data-boilingpoint="2567°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁰">66<br>Dy</div>
+                <div class="element lanthanide" data-name="Holmium" data-symbol="Ho" data-number="67" data-weight="164.930" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1474°C" data-boilingpoint="2720°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹¹">67<br>Ho</div>
+                <div class="element lanthanide" data-name="Erbium" data-symbol="Er" data-number="68" data-weight="167.26" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1529°C" data-boilingpoint="2868°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹²">68<br>Er</div>
+                <div class="element lanthanide" data-name="Thulium" data-symbol="Tm" data-number="69" data-weight="168.934" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1818°C" data-boilingpoint="2223°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹³">69<br>Tm</div>
+                <div class="element lanthanide" data-name="Ytterbium" data-symbol="Yb" data-number="70" data-weight="173.04" data-halflife="Stable" data-phase="Solid" data-meltingpoint="824°C" data-boilingpoint="1196°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁴">70<br>Yb</div>
+                <div class="element lanthanide" data-name="Lutetium" data-symbol="Lu" data-number="71" data-weight="174.966" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1663°C" data-boilingpoint="3402°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁵">71<br>Lu</div>
+    
+            </div>
+        </div>
+
+        <h3>Actinides</h3>
+       <div class="actinides-container">
+            <div class="row">
+                <!-- Actinides Row -->
+                <div class="element actinide" data-name="Actinium" data-symbol="Ac" data-number="89" data-weight="227" data-halflife="Stable" data-phase="Solid" data-meltingpoint="1050°C" data-boilingpoint="3200°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹¹">89<br>Ac</div>
+                <div class="element actinide" data-name="Thorium" data-symbol="Th" data-number="90" data-weight="232.0377" data-halflife="14 billion years" data-phase="Solid" data-meltingpoint="1750°C" data-boilingpoint="4820°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹²">90<br>Th</div>
+                <div class="element actinide" data-name="Protactinium" data-symbol="Pa" data-number="91" data-weight="231.0359" data-halflife="32,760 years" data-phase="Solid" data-meltingpoint="1568°C" data-boilingpoint="4137°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹³">91<br>Pa</div>
+                <div class="element actinide" data-name="Uranium" data-symbol="U" data-number="92" data-weight="238.0289" data-halflife="4.468 billion years" data-phase="Solid" data-meltingpoint="1132°C" data-boilingpoint="4131°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁴">92<br>U</div>
+                <div class="element actinide" data-name="Neptunium" data-symbol="Np" data-number="93" data-weight="237" data-halflife="2.14 million years" data-phase="Solid" data-meltingpoint="644°C" data-boilingpoint="4135°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁵">93<br>Np</div>
+                <div class="element actinide" data-name="Plutonium" data-symbol="Pu" data-number="94" data-weight="244" data-halflife="24,100 years" data-phase="Solid" data-meltingpoint="640°C" data-boilingpoint="3225°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁶">94<br>Pu</div>
+                <div class="element actinide" data-name="Americium" data-symbol="Am" data-number="95" data-weight="243" data-halflife="432.2 years" data-phase="Solid" data-meltingpoint="1176°C" data-boilingpoint="2284°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁷">95<br>Am</div>
+                <div class="element actinide" data-name="Curium" data-symbol="Cm" data-number="96" data-weight="247" data-halflife="15.6 million years" data-phase="Solid" data-meltingpoint="1340°C" data-boilingpoint="3110°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁸">96<br>Cm</div>
+                <div class="element actinide" data-name="Berkelium" data-symbol="Bk" data-number="97" data-weight="247" data-halflife="1,380 years" data-phase="Solid" data-meltingpoint="986°C" data-boilingpoint="2520°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d¹⁹">97<br>Bk</div>
+                <div class="element actinide" data-name="Californium" data-symbol="Cf" data-number="98" data-weight="251" data-halflife="898 years" data-phase="Solid" data-meltingpoint="900°C" data-boilingpoint="1470°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²⁰">98<br>Cf</div>
+                <div class="element actinide" data-name="Einsteinium" data-symbol="Es" data-number="99" data-weight="252" data-halflife="471.7 days" data-phase="Solid" data-meltingpoint="1133°C" data-boilingpoint="1970°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²¹">99<br>Es</div>
+                <div class="element actinide" data-name="Fermium" data-symbol="Fm" data-number="100" data-weight="257" data-halflife="100.5 days" data-phase="Solid" data-meltingpoint="1527°C" data-boilingpoint="2355°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²²">100<br>Fm</div>
+                <div class="element actinide" data-name="Mendelevium" data-symbol="Md" data-number="101" data-weight="258" data-halflife="51.5 days" data-phase="Solid" data-meltingpoint="1100°C" data-boilingpoint="2200°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²³">101<br>Md</div>
+                <div class="element actinide" data-name="Nobelium" data-symbol="No" data-number="102" data-weight="259" data-halflife="58 minutes" data-phase="Solid" data-meltingpoint="827°C" data-boilingpoint="1900°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²⁴">102<br>No</div>
+                <div class="element actinide" data-name="Lawrencium" data-symbol="Lr" data-number="103" data-weight="262" data-halflife="3.6 hours" data-phase="Solid" data-meltingpoint="1627°C" data-boilingpoint="3300°C" data-electronicConfiguration="1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 4d²⁵">103<br>Lr</div>
+            </div>
+       </div>
+    </div>
+
+    <!-- Detailed Element View -->
+    <div id="element-detail" class="element-detail hidden">
+        <div class="element-box">
+            <div class="element-symbol"></div>
+            <div class="element-name"></div>
+            <div class="element-weight"></div>
+            <div class="element-number"></div>
+        </div>
+        <button id="close-detail" class="close-button">Close</button>
+        <div class="element-info">
+            <h2 class="element-info-name"></h2>
+            <div class="element-details">
+                <p class="element-phase"></p>
+                <p class="element-halflife"></p>
+                <p class="element-meltingpoint"></p>
+                <p class="element-boilingpoint"></p>
+                <p class="element-electronicConfiguration"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="trail.js"></script>
+    <script src="trail2.js"></script>
+</body>
+</html>
